@@ -1,0 +1,178 @@
+<html>
+    <head>
+        <title>About</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #3d2779;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: rgb(107, 106, 106);
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 50%;
+    display: block;
+  }
+}
+.card {
+    background-color: rgb(0, 255, 76);
+    box-shadow: 0 4px 8px 0 rgba(145, 34, 34, 0.2);
+    margin: 8px;
+    display: flex;
+
+
+}
+</style>
+    </head>
+    <div class="about-section">
+        <h1>About Us</h1>
+        <p>Technological Institute of the Philippines</p>
+        <p>Archiving Website Application for Project Development Documents Dedicated for Computer Engineers.</p>
+      </div>
+      
+      <h2 style="text-align:center">Meet the Team</h2>
+      <div class="row">
+        <div class="column">
+          <div class="card">
+            <img src="{{ MEDIA_URL }}/default/my_pic1.jpg" alt="Halog" style="width:50%" border-radius: 50%;>
+            <div class="container">
+              <h2>Harold Halog</h2>
+              <p class="title">Team Leader</p>
+              <p>CPE025-CPE41S3 Team-8</p>
+              <p>qhphalog@tip.edu.ph</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <img src="{{ MEDIA_URL }}/default/my_pic3.png" alt="Jay" style="width:50%">
+            <div class="container">
+              <h2>Jay Mark Gabor</h2>
+              <p class="title">Co-Leader</p>
+              <p>CPE025-CPE41S3 Team-8</p>
+              <p>qjmrgabor@tip.edu.ph</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <img src="{{ MEDIA_URL }}/default/my_pic4.jpg" alt="Naval" style="width:50%">
+            <div class="container">
+              <h2>Nathan Naval</h2>
+              <p class="title">Team Member</p>
+              <p>CPE025-CPE41S3 Team-8</p>
+              <p>qmntnval@tip.edu.ph</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+              <img src="{{ MEDIA_URL }}/default/my_pic.png" alt="Kenneth" style="width:50%">
+              <div class="container">
+                <h2>Kenneth Carl Pingcas</h2>
+                <p class="title">Team Member</p>
+                <p>CPE025-CPE41S3 Team-8</p>
+                <p>qkcgpingcas@tip.edu.ph</p>
+                <p><button class="button">Contact</button></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <img src="{{ MEDIA_URL }}/default/my_pic5.jpg" alt="Tusing" style="width:50%">
+              <div class="container">
+                <h2>Angelo Tusing</h2>
+                <p class="title">Team Member</p>
+                <p>CPE025-CPE41S3 Team-8</p>
+                <p>qavtusing@tip.edu.ph</p>
+                <p><button class="button">Contact</button></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <img src="Images/stud.png" alt="Jonathan" style="width:50%">
+              <div class="container">
+                <h2>Jonathan Taylar</h2>
+                <p class="title">Computer Engineering Department</p>
+                <p>Professor</p>
+                <p>jtaylar.cpe@tip.edu.ph</p>
+                <p><button class="button">Contact</button></p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+</html>

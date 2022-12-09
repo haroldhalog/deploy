@@ -1,0 +1,93 @@
+{% extends "base.html" %} {% load humanize %} {% load customfilter %} {% block pageContent %}
+
+<!--Section: Content-->
+<section class="">
+
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card rounded-0 shadow border-primary text-start summary-card my-3">
+                <div class="card-body">
+                    <div class="d-flex w-100">
+                        <div class="col-8 pe-2">
+                        </div>
+                        <div class="col-4">
+                            <div class="text-centerbg-light">
+                                <i class="fa fa-folder-open fs-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card card-default border rounded-0 shadow">
+                <div class="card-header">
+                    <h4 class="card-title"><b>List Files</b></h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered" id="file-table">
+                        <colgroup>
+                            <col width="20%">
+                            <col width="40%">
+                            <col width="25%">
+                            <col width="15%">
+                        </colgroup>
+                        <thead>
+                            <tr class="bg-gradient bg-light">
+                                <th class=text-center>Title</th>
+                                <th class=text-center>Description</th>
+                                <th class=text-center>FileName</th>
+                                <th class=text-center>Copy Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for post in posts %}
+                            <tr>
+                                <td class="text-start">{{ post.title }}</td>
+                                <td class="text-start">{{ post.description }}</td>
+    
+                            
+                                <td class="text-center"><button class="btn btn-default bg-gradient btn-sm copy-link" type="button" data-url="{{ request.build_absolute_uri|slice:':-1' }}{{ post.get_share_url }}" title="Copy Link tp clipboard"><i class="fa fa-copy"></i> Click Copied </button></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</div> {% endblock pageContent %} {% block ScriptBlock %}
+<script>
+    $(function() {
+        $('#file-table').find('td, th').addClass('align-middle px-2 py-1 text-sm')
+        $('.copy-link').click(function() {
+            var input = $('<input class="clip-text">')
+            input.val($(this).attr('data-url'))
+            $('main').append(input)
+            input[0].select()
+            input[0].setSelectionRange(0, (input.val()).length)
+            var copy = document.execCommand('copy')
+            if (copy) {
+                alert("Link Copied to Clipboard")
+            }
+            setTimeout(function() {
+                input.remove()
+            }, 300)
+        })
+
+        $('#file-table').dataTable({
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            "pageLength": 25
+        })
+    })
+</script>
+{% endblock ScriptBlock %}

@@ -1,0 +1,123 @@
+{% extends 'base.html' %} {% block pageContent %}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card card-default rounded-0 shadow ">
+        <div class="card-header">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <h4 class="card-title fw-bold">My Uploaded Files</h4>
+                <div class="tools">
+                    <button type="button" class="btn btn-primary rounded-0 bg-gradient btn-sm" id='add_new'><i class="fa fa-plus"></i> Add New</button>
+                </div>
+                <div class="tools">
+                    <button type="button" class="btn btn-primary rounded-0 bg-gradient btn-sm" id='add_new'><i class="fa fa-plus"></i> Update File</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <table class="table table-bordered" id="post-list">
+                    <colgroup>
+                        <col width="5%">
+                        <col width="15%">
+                        <col width="25%">
+                        <col width="40%">
+                        <col width="15%">
+                    </colgroup>
+                    <thead>
+                        <tr class="bg-gradient bg-primary bg-opacity-50 text-light">
+                            <th class="px-2 py-2 text-center">#</th>
+                            <th class="px-2 py-2 text-center">Date/Time Uploaded</th>
+                            <th class="px-2 py-2 text-center">Title</th>
+                            <th class="px-2 py-2 text-center">Description</th>
+                            <th class="px-2 py-2 text-center">Action</th>
+                            <th class="px-2 py-2 text-center">Depart</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in posts %}
+                        <tr>
+                            <td class="px-2 py-1 align-middle">{{ forloop.counter }}</td>
+                            <td class="px-2 py-1 align-middle">{{ post.date_created|date:"Y-m-d h:i A" }}</td>
+                            <td class="px-2 py-1 align-middle">{{ post.title }}</td>
+                            <td class="px-2 py-1 align-middle"><p class="m-0 text-truncate">{{ post.description }}</p></td>
+                            <td class="px-2 py-1 align-middle text-center">
+                                <a class="btn btn-outline-primary btn-sm edit-data" href="javascript:void(0)" data-id="{{ post.pk }}" title="Edit">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <button class="btn btn-outline-danger btn-sm delete-data" type="button" data-id="{{ post.pk }}" title="Delete">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock pageContent %} {% block ScriptBlock %}
+<script>
+    $(function() {
+        $('#add_new').click(function() {
+            uni_modal('<i class="fa fa-plus"></i> Add Departmnet', '{% url "manage-post" %}', 'modal-md')
+        })
+        $('.edit-data').click(function() {
+            uni_modal('<i class="fa fa-edit"></i> Edit post', '{% url "manage-post" %}/' + $(this).attr('data-id'), 'modal-md')
+        })
+        $('.delete-data').click(function() {
+            _conf("Are you sure to delete this post permanently?", "delete_post", [$(this).attr('data-id')])
+        })
+
+        $('#post-list').DataTable({
+            columnDefs: [{
+                orderable: false,
+                targets: 4
+            }],
+            initComplete: function(settings, json) {
+                $('table td, table th').addClass('px-2 py-1')
+            },
+            drawCallback: function(settings) {
+                $('table td, table th').addClass('px-2 py-1')
+            }
+        })
+    })
+
+    function delete_post($id) {
+        start_loader();
+        var _this = $(this)
+        $('.err-msg').remove();
+        var el = $('<div>')
+        el.addClass("alert alert-danger err-msg")
+        el.hide()
+        $.ajax({
+            url: '{% url "delete-post" %}',
+            headers: {
+                'X-CSRFToken': "{{csrf_token}}"
+            },
+            method: 'POST',
+            data: {
+                id: $id
+            },
+            dataType: 'json',
+            error: err => {
+                console.log(err)
+                el.text('An error occurred.')
+                el.show('slow')
+                end_loader()
+            },
+            success: function(resp) {
+                if (resp.status == 'success') {
+                    location.reload()
+                } else if (!!resp.msg) {
+                    el.text('An error occurred.')
+                    el.show('slow')
+                } else {
+                    el.text('An error occurred.')
+                    el.show('slow')
+                }
+                end_loader()
+            }
+        })
+    }
+</script>
+{% endblock ScriptBlock %}

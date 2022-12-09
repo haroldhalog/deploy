@@ -1,0 +1,72 @@
+{% load customfilter %}
+<div class="container-fluid">
+    <form action=" " id="post-form">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ post.id }}">
+        <input type="hidden" name="user" value="{% if not post %}{{ user.id }}{% else %}{{ post.user.id }}{% endif %}">
+        <div class="form-group mb-3 ">
+            <label for="title" class="control-label">Title</label>
+            <input type="text" class="form-control rounded-0" id="title" name="title" value="{{ post.title }}" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="description" class="control-label">Description</label>
+            <textarea class="form-control rounded-0" name="description" id="description" rows="5" required>{{ post.description }}</textarea>
+        </div>
+        <div class="form-group mb-3 ">
+            <label for="file_path" class="control-label">File</label>
+            <input type="file" class="form-control rounded-0" id="file_path" name="file_path" value="" accept='image/*, video/*, audio/*, application/pdf, text/csv, text/plain, application/zip, .docs,.doc, application/ppt, .ppt' {% if not post %} required {% endif %}> 
+            <small class="text-muted"><i>Accept Only:  application/pdf/zip</i></small>
+            {% if post.file_path %}
+            <div><small><span class="text-muted">Current File:</span> <a href="{{ post.file_path.url }}" target="_blank">{{ post.file_path|replaceBlank:"uploads/" }}</a></small> </div>
+            {% endif %}
+        </div>
+    </form>
+</div>
+<script>
+    $(function() {
+        $('#post-form').submit(function(e) {
+            e.preventDefault();
+            var _this = $(this)
+            $('.err-msg').remove();
+            var el = $('<div>')
+            el.addClass("alert alert-danger err-msg")
+            el.hide()
+            if (_this[0].checkValidity() == false) {
+                _this[0].reportValidity();
+                return false;
+            }
+            start_loader();
+            $.ajax({
+                url: "{% url 'save-post' %}",
+                data: new FormData($(this)[0]),
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST',
+                dataType: 'json',
+                error: err => {
+                    console.log(err)
+                    alert("An error occured ", 'error');
+                    end_loader();
+                },
+                success: function(resp) {
+                    if (typeof resp == 'object' && resp.status == 'success') {
+                        el.removeClass("alert alert-danger err-msg ")
+                        location.reload()
+                    } else if (resp.status == 'failed' && !!resp.msg) {
+                        el.html(resp.msg)
+                    } else {
+                        el.text("An error occured ", 'error');
+                        end_loader();
+                        console.err(resp)
+                    }
+                    _this.prepend(el)
+                    el.show('slow')
+                    $("html, body, .modal ").scrollTop(0);
+                    end_loader()
+                }
+            })
+        })
+    })
+</script>

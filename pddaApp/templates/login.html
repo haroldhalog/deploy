@@ -1,6 +1,7 @@
-{% extends 'base.html' %}{% load static %}
+{% extends 'base.html' %}{% load static %}{% block pageContent %}
 <style>
     main {
+        background-image: url(media/uploads/pdda2.jpg); 
         height: 100%;
         width: 100%;
         display: flex;
@@ -8,12 +9,16 @@
         justify-content: center;
         overflow: auto;
     }
+    .card {
+        background-image: url(media/uploads/pdda2.jpg); 
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: 8px;
+        display: flex;
+}
 </style>
 <div class="d-flex flex-column w-100 justify-content-center align-items-center">
     <div class="mb-4">
-        <center>
-            <img src="{{ MEDIA_URL }}/default/T.I.P._Logo.png" alt="">
-        </center>
+            <img src="" alt="">
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
         <div class="card card-default rounded-0 shadow">
@@ -41,10 +46,10 @@
                                         </div>
                                         <button class="btn btn-sm rounded-0 btn-primary">
                                                 Login
-                                            </button>
+                                            </button>                              
                                         <button class="btn btn-sm rounded-0 btn-primary">
-                                                Forgot Password
-                                            </button>
+                                            <a  href="{% url 'password_reset' %}">Reset password</a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +61,7 @@
     </div>
 </div>
 
-{% block content %}
+{% endblock pageContent %} {% block ScriptBlock %}
 <script>
     $(function() {
         $('#login-user').submit(function(e) {
@@ -108,4 +113,4 @@
         })
     })
 </script>
-{% endblock content %}
+{% endblock ScriptBlock %}

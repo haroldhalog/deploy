@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
-    # ...
 ]
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'your_cloud_name',

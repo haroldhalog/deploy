@@ -69,7 +69,7 @@ ROOT_URLCONF = 'pdda_django.urls'
 
 TEMPLATES = [
     {
-      
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {

@@ -27,8 +27,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v(!)y2fv58uges^ub#r9n!-oydq=2m%=tv!5b@-x&9lih9^+^t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+TEMPLATE_DEBUG = True
+DEBUG = False
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 CSRF_TRUSTED_ORIGINS = ['https://web-production-3d90.up.railway.app']

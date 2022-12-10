@@ -34,7 +34,7 @@ if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-3d90.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://deploy-production-e905.up.railway.app/']
 # Application definition
 
 INSTALLED_APPS = [

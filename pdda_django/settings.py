@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'pddaApp.apps.pddaappConfig',
     'cloudinary_storage',
-    'django.contrib.staticfiles',
     'cloudinary',
 ]
 CLOUDINARY_STORAGE = {

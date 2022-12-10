@@ -30,11 +30,8 @@ SECRET_KEY = 'django-insecure-v(!)y2fv58uges^ub#r9n!-oydq=2m%=tv!5b@-x&9lih9^+^t
 TEMPLATE_DEBUG = True
 DEBUG = True
 ALLOWED_HOSTS = ['*']
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
-CSRF_TRUSTED_ORIGINS = ['https://deploy-production-e905.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://deploy-production-e905.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [

@@ -31,7 +31,7 @@
 
 <body class="">
 
-    {% block TopNavigation %} {% endblock TopNavigation %}
+    {% block TopNavigation %}  {% include "TopNavigation.html" %} {% endblock TopNavigation %}
     <main class="py-5">
         <div class="container mb-3">
             {% if messages %}

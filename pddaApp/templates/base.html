@@ -26,10 +26,9 @@
     <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/mdb-blogtemplate/js/mdb.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/default/js/script.js' %}"></script>
-</head>
+</head> {% block headerContent %} {% endblock headerContent %}
 <body class="">
-
-   
+{% block TopNavigation %} {% include "TopNavigation.html" %} {% endblock TopNavigation %}
     <main class="py-5">
         <div class="container mb-3">
             {% if messages %}

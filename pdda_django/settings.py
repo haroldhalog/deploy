@@ -31,7 +31,7 @@ TEMPLATE_DEBUG = True
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['fuscia-cannon-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://fuscia-cannon-production.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [

@@ -188,4 +188,7 @@ def update_password(request):
 def about(request):
     return render(request, 'about.html', context)
 
+def topNavigation(request):
+    return render(request, 'topNavigation.html', context)
+
 

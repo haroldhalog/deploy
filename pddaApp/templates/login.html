@@ -1,5 +1,8 @@
 {% extends 'base.html' %}{% load static %}{% block pageContent %}
 <style>
+    html,body { 
+	height: 100%; 
+}
     main {
         height: 100%;
         width: 100%;
@@ -8,51 +11,54 @@
         justify-content: center;
         overflow: auto;
     }
+    .global-container{
+	    height:100%;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    background-color: #f5f5f5;
+}
+    form{
+	    padding-top: 10px;
+	    font-size: 14px;
+	    margin-top: 30px;
+}
+    .card-title{ font-weight:300; }
+
+    .btn{
+	    font-size: 14px;
+	    margin-top:20px;
+}
 </style>
-<div class="d-flex flex-column w-100 justify-content-center align-items-center">
-    <div class="mb-4">
-        <center>
-            <img src="{{ MEDIA_URL }}/default/T.I.P._Logo.png" alt="">
-        </center>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-        <div class="card card-default rounded-0 shadow">
-            <div class="card-header">
-                <h4 class="card-title"><b>Login</b></h4>
-            </div>
-            <div class="card-body">
-                <div class="container-fluid">
-                    <form id="login-user">
-                        {% csrf_token %}
-                        <div class="mdc-layout-grid">
-                            <div class="mdc-layout-grid__inner">
-                                <div class="form-group mb-3">
-                                    <label for="username" class="control-label">Username</label>
-                                    <input type="text" class="form-control rounded-0" name="username" id="username" required="required">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="password" class="control-label">Password</label>
-                                    <input type="password" class="form-control rounded-0" name="password" id="password" required="required">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <div class="d-flex w-100 justify-content-between align-items-center">
-                                        <div class="col-md-4">
-                                            {% comment %} <a href="{% url 'register-user' %}">Signup</a> {% endcomment %}
-                                        </div>
-                                        <button class="btn btn-sm rounded-0 btn-primary">
-                                                Login
-                                            </button>
-                                        <div class="d-flex flex-column my-4">
-                                                <a  href="{% url 'password_reset' %}">Reset password</a>
-                                    </div>
-                                </div>
-                            </div>
+<div class="global-container">
+	<div class="card login-form">
+	<div class="card-body">
+		<h3 class="card-title text-center">Log in </h3>
+		<div class="card-text">
+			<!--
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
+            <form id="login-user">
+                {% csrf_token %}
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="form-group mb-3">
+                            <label for="username" class="control-label">Username</label>
+                            <input type="text" class="form-control rounded-0" name="username" id="username" required="required">
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+				<div class="form-group">
+					<label for="password">Password</label>
+                    <input type="password" class="form-control rounded-0" name="password" id="password required="required">
+					<a href="{% url 'password_reset' %}" style="float:right;font-size:12px;">Forgot password?</a>
+				</div>
+				<button type="submit" class="btn btn-primary btn-block">Sign in</button>
+				
+				<div class="sign-up">
+					Don't have an account? <a href="{% url 'register-user' %}">Create One</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 </div>
 
 {% endblock pageContent %} {% block ScriptBlock %}

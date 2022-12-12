@@ -11,6 +11,7 @@ urlpatterns = [
     path('userlogin', views.login_user, name="login-user"),
     path('user-register', views.registerUser, name="register-user"),
     path('logout',views.logoutuser,name='logout'),
+    path('topNavigation',views.topNavigation,name='topNavigation'),
     path('profile',views.profile,name='profile'),
     path('update-profile',views.update_profile,name='update-profile'),
     # path('update-avatar',views.update_avatar,name='update-avatar'),

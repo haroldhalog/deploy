@@ -150,3 +150,10 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login'
 
 ID_ENCRYPTION_KEY = b'UdhnfelTxqj3q6BbPe7H86sfQnboSBzb0irm2atoFUw='
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'halogharold@gmail.com'
+EMAIL_HOST_PASSWORD = 'pussoodrecayocef'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'pddaApp Team <noreply@pddaApp.com>'
